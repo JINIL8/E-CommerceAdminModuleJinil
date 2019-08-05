@@ -10,6 +10,7 @@ import { ProductListComponent } from './product/product-list/product-list.compon
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'dashboard', canActivate: [GaurdService], component: DashboardComponent },
+  { path: 'edit-product/:id', canActivate: [GaurdService], component: AddProductComponent },
   { path: 'login', component: LoginComponent  },
   { path: 'register' , component: RegisterComponent},
   { path: 'add-product' , component: AddProductComponent},

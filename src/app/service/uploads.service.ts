@@ -4,6 +4,7 @@ import { AngularFireList, AngularFireDatabase } from 'angularfire2/database';
 import { Uploads } from '../class/uploads';
 import 'angularfire2/storage';
 import * as firebase from 'firebase/app';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,8 @@ export class UploadsService {
 
   constructor(private af: AngularFireModule, private db: AngularFireDatabase) { }
 
-  private basePath:string = `/uploads`;
-  uploads: AngularFireList<Uploads[]>;
+  private basePath = `/uploads`;
+  upload: AngularFireList<Uploads>;
 
   pushUpload(upload: Uploads) {
     const storageRef = firebase.storage().ref();
@@ -30,11 +31,16 @@ export class UploadsService {
       },
       () => {
         // upload success
+        console.log(uploadTask);
         upload.url = uploadTask.snapshot.downloadURL;
         upload.name = upload.file.name;
         this.saveFileData(upload);
       }
     );
+  }
+
+  getFilesList() {
+    return this.upload;
   }
 
   // Writes the file details to the realtime db

@@ -552,23 +552,23 @@ div.footable-loader>span.fooicon {
     animation: fooicon-spin-r 2s infinite linear
 }
 
-table.footable>tbody>tr.footable-empty>td {
+/* table.footable>tbody>tr.footable-empty>td {
     vertical-align: middle;
     text-align: center;
     font-size: 30px
-}
+} */
 
 table.footable>tbody>tr>td,
 table.footable>tbody>tr>th {
     display: none
 }
 
-table.footable>tbody>tr.footable-detail-row>td,
+/* table.footable>tbody>tr.footable-detail-row>td,
 table.footable>tbody>tr.footable-detail-row>th,
 table.footable>tbody>tr.footable-empty>td,
 table.footable>tbody>tr.footable-empty>th {
     display: table-cell
-}
+} */
 
 @-webkit-keyframes fooicon-spin-r {
     0% {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User, RegisterService } from 'src/app/service/register.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { AuthenticationService } from 'src/app/service/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -19,9 +20,10 @@ export class LoginComponent implements OnInit {
   };
 
   constructor(private loginService: RegisterService, private router: Router,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService, private authService: AuthenticationService) { }
 
   ngOnInit() {
+    localStorage.setItem('loggedin', 'false');
   }
   login() {
     // console.log(this.loginService.getUserByEmail(this.user.email));

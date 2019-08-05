@@ -17,7 +17,7 @@
     <div class="block-header">
       <div class="row">
         <div class="col-lg-7 col-md-6 col-sm-12">
-          <h2>Add Product
+          <h2>{{formType}} Product
             <!-- <small class="text-muted">Welcome to Compass</small> -->
           </h2>
         </div>
@@ -25,7 +25,7 @@
           <ul class="breadcrumb float-md-right">
             <li class="breadcrumb-item"><a href="dashboard"><i class="zmdi zmdi-home"></i>Dashboard</a></li>
             <li class="breadcrumb-item"><a href="javascript:void(0);">Product</a></li>
-            <li class="breadcrumb-item active">Add-Product</li>
+            <li class="breadcrumb-item active">{{formType}} 1`Product</li>
           </ul>
         </div>
       </div>
@@ -47,14 +47,14 @@
                   <div class="col-sm-6">
                     <h4>Product Name</h4>
                     <div class="form-group">
-                      <input type="text" class="form-control" formControlName="product_name" id="product_name"
+                      <input type="text"  #product_name  [(ngModel)]="product.product_name"class="form-control" formControlName="product_name" id="product_name"
                         placeholder="Enter Product Name" />
                     </div>
                   </div>
                   <div class="col-sm-6">
                     <h4>Product Type</h4>
                     <div class="form-group">
-                      <input type="text" class="form-control" formControlName="product_type" id="product_type"
+                      <input type="text" #product_type class="form-control" formControlName="product_type" [(ngModel)]="product.product_type" id="product_type"
                         placeholder="Product Type" />
                     </div>
                   </div>
@@ -63,13 +63,13 @@
                   <div class="col-sm-6">
                     <h4>Price</h4>
                     <div class="form-group">
-                      <input type="text" class="form-control" formControlName="price" id="price" min="0" value="0" />
+                      <input type="text" class="form-control" #price [(ngModel)]="product.price" formControlName="price" id="price" min="0" value="0" />
                     </div>
                   </div>
                   <div class="col-sm-6">
                     <h4>Discount</h4>
                     <div class="form-group">
-                      <input type="number" class="form-control" formControlName="discount" id="discount" min="0"
+                      <input type="number" class="form-control" #discount  [(ngModel)]="product.discount" formControlName="discount" id="discount" min="0"
                         value="0" />
                     </div>
                   </div>
@@ -109,7 +109,7 @@
                       <div class="col-sm-12">
                         <div class="form-group">
                           <div class="form-line">
-                            <textarea rows="4" class="form-control" formControlName="description" id="discription"
+                            <textarea  #description [(ngModel)]="product.description" rows="4" class="form-control" formControlName="description" id="discription"
                               placeholder="Please type what you want..."></textarea>
                           </div>
                         </div>
@@ -122,7 +122,7 @@
               </div>
               <div class="form-actions" style="padding-left: 383px;">
                 <button type="button" (click)="addProduct()" class="btn btn-raised btn-primary btn-round waves-effect">
-                  Save</button>
+                  {{formButon}}</button>
                 <button type="button" class="btn btn-raised btn-primary btn-round waves-effect">Cancel</button>
               </div>
             </form>
