@@ -1,0 +1,56 @@
+<body class="theme-cyan">
+  <!-- Page Loader -->
+  <div class="page-loader-wrapper">
+    <!-- <div class="loader">
+                  <div class="m-t-30"><img class="zmdi-hc-spin" src="assets/images/logo.svg" width="48" height="48" alt="Compass"></div>
+                  <p>Please wait...</p>
+              </div> -->
+  </div>
+  <!-- Overlay For Sidebars -->
+  <div class="overlay"></div>
+  <!-- Top root -->
+  <app-header></app-header>
+  <!-- Left sidebar -->
+  <app-sidenavbar></app-sidenavbar>
+  <section class="content">
+    <div class="block-header">
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <div class="card">
+            <div class="header">
+              <h2><strong>Gallery</strong> <small>All pictures</small> </h2>
+
+            </div>
+            <div class="body" *ngIf="imageList">
+              <div id=" " *ngFor="let i of rowIndexArray" class="list-unstyled row clearfix">
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 m-b-20" *ngIf="i==0">
+                  <a href="company-form">
+                    <img src="/assets/images/new_image.jpg" class="img-fluid">
+                    <span class="imagebox-desc">Insert New Image</span></a>
+                </div>
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 m-b-20" *ngIf="i!=0"><img
+                    [src]="imageList[3*i-1].imageUrl" class="img-fluid img-thumbnail"> 
+                    <span class="imagebox-desc"></span>
+                  </div>
+
+                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 m-b-20" *ngIf="imageList[3*i]"><img
+                    [src]="imageList[3*i].imageUrl" class="img-fluid img-thumbnail"> 
+                    <span class="imagebox-desc"><h2>{{imageList[3*i].company_name | uppercase }}</h2></span>
+                  </div>
+                  <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 m-b-20" *ngIf="imageList[3*i+1]"><img
+                    [src]="imageList[3*i+1].imageUrl" class="img-fluid img-thumbnail"> 
+                    <span class="imagebox-desc"><h2>{{imageList[3*i+1].company_name | uppercase }}</h2></span>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+  </section>
+  <!-- footer -->
+  <app-foter></app-foter>
+</body>

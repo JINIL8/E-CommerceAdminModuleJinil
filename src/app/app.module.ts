@@ -22,6 +22,10 @@ import { environment } from 'src/environments/environment';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AddProductComponent } from './product/add-product/add-product.component';
 import { ProductListComponent } from './product/product-list/product-list.component';
+import { CompanyFormComponent } from './company/company-form/company-form.component';
+import { AlbumListComponent } from './company/album-list/album-list.component';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+
 
 
 @NgModule({
@@ -36,6 +40,8 @@ import { ProductListComponent } from './product/product-list/product-list.compon
     LoginComponent,
     AddProductComponent,
     ProductListComponent,
+    CompanyFormComponent,
+    AlbumListComponent,
 
   ],
   imports: [
@@ -49,6 +55,7 @@ import { ProductListComponent } from './product/product-list/product-list.compon
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireDatabaseModule,
+    AngularFireStorageModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

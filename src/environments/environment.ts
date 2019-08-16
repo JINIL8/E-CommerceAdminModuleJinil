@@ -5,13 +5,13 @@
 export const environment = {
   production: false,
   firebase : {
-    apiKey: 'AIzaSyBmepS6iz1D-TlzGm-XqjY2aO8eTuvMoog',
-    authDomain: 'e-commerceadminmodule.firebaseapp.com',
-    databaseURL: 'https://e-commerceadminmodule.firebaseio.com',
-    projectId: 'e-commerceadminmodule',
-    storageBucket: 'e-commerceadminmodule.appspot.com',
-    messagingSenderId: '189385783937',
-    appId: '1:189385783937:web:dac85f633db9bce4'
+    apiKey: 'AIzaSyAwGFuWv3k1FFtuNeHIurHPzObEOBpeZLY',
+    authDomain: 'angular-image-gallery-662cd.firebaseapp.com',
+    databaseURL: 'https://angular-image-gallery-662cd.firebaseio.com',
+    projectId: 'angular-image-gallery-662cd',
+    storageBucket: 'angular-image-gallery-662cd.appspot.com',
+    messagingSenderId: '86128613700',
+    appId: '1:86128613700:web:c9cc29d01f289392'
   }
 };
 

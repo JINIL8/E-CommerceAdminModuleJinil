@@ -6,6 +6,8 @@ import { RegisterComponent } from './security/register/register.component';
 import { GaurdService } from './service/gaurd.service';
 import { AddProductComponent } from './product/add-product/add-product.component';
 import { ProductListComponent } from './product/product-list/product-list.component';
+import { CompanyFormComponent } from './company/company-form/company-form.component';
+import { AlbumListComponent } from './company/album-list/album-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -15,6 +17,8 @@ const routes: Routes = [
   { path: 'register' , component: RegisterComponent},
   { path: 'add-product' , component: AddProductComponent},
   { path: 'product-list' , component: ProductListComponent},
+  { path: 'company-form' , component: CompanyFormComponent},
+  { path: 'album-list' , component: AlbumListComponent}
 ];
 
 @NgModule({
