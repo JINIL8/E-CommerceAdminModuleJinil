@@ -18,7 +18,7 @@ export class AlbumsService {
 
   constructor(private db: AngularFirestore) {
 
-    this.ImagesCollection = db.collection<Image>('TBL_IMAGE');
+    this.ImagesCollection = db.collection<Image>('TBL_COMPANY');
 
     this.Images = this.ImagesCollection.snapshotChanges().pipe(
       map(actions => {
@@ -30,19 +30,20 @@ export class AlbumsService {
       })
     );
   }
-  getCompanysList() {
-    return this.Images;
+  updateImage(id: string, company: Image) {
+    this.ImagesCollection.doc(id).update(company);
   }
-  updateCompany(id: string, company: Image) {
-    return this.ImagesCollection.doc(id).update(company);
+  getImageById(id) {
+    return this.ImagesCollection.doc<Image>(id).valueChanges();
   }
- /*  addCompany(company: Image) {
-    return this.ImagesCollection.add(company);
-  } */
   getImagesList() {
     return this.Images;
   }
   addImage(image: Image) {
     return this.ImagesCollection.add(image);
   }
+  deleteImage(id: string) {
+    return this.ImagesCollection.doc(id).delete();
+  }
+
 }

@@ -18,6 +18,7 @@ const routes: Routes = [
   { path: 'add-product' , component: AddProductComponent},
   { path: 'product-list' , component: ProductListComponent},
   { path: 'company-form' , component: CompanyFormComponent},
+  { path: 'edit-company-form/:id', canActivate: [GaurdService], component: CompanyFormComponent},
   { path: 'album-list' , component: AlbumListComponent}
 ];
 
@@ -29,5 +30,6 @@ export class AppRoutingModule { }
 export const RoutingComponents = [
   RegisterComponent,
   DashboardComponent,
+  CompanyFormComponent,
   LoginComponent,
 ];

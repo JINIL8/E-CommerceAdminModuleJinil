@@ -28,7 +28,7 @@
           <form [formGroup]="formTemplate" (submit)="onSubmit(formTemplate.value)">
 
             <div class="form-group">
-              <input class="form-control" formControlName="company_name" placeholder="CompanyName">
+              <input type="text" #company_name  [(ngModel)]="product.company_name" class="form-control" formControlName="company_name" placeholder="CompanyName">
               <div class="text-danger" *ngIf="isSubmitted && formControls.company_name.errors?.required">This field is
                 required.
               </div>
@@ -46,7 +46,7 @@
               </div>
             </div>
             <div class="form-group">
-              <textarea class="form-control" formControlName="description" placeholder="Description"></textarea>
+              <textarea #description [(ngModel)]="product.description" class="form-control" formControlName="description" placeholder="Description"></textarea>
               <div class="text-danger" *ngIf="isSubmitted && formControls.description.errors?.required">This field is
                 required.
               </div>
@@ -63,7 +63,7 @@
                 <a routerLink="" class="btn btn-primary btn-block float-right">Go To Gallery</a>
               </div>
               <div class="form-group col-md-6">
-                <button type="submit" class="btn btn-success btn-block float-right">Submit</button>
+                <button type="submit" [disabled]="formTemplate.invalid"  class="btn btn-success btn-block float-right">{{formButon}}</button>
               </div>
             </div>
           </form>

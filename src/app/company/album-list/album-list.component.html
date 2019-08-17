@@ -22,34 +22,82 @@
 
             </div>
             <div class="body" *ngIf="imageList">
+
               <div id=" " *ngFor="let i of rowIndexArray" class="list-unstyled row clearfix">
-                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 m-b-20" *ngIf="i==0">
-                  <a href="company-form">
-                    <img src="/assets/images/new_image.jpg" class="img-fluid">
-                    <span class="imagebox-desc">Insert New Image</span></a>
-                </div>
-                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 m-b-20" *ngIf="i!=0"><img
-                    [src]="imageList[3*i-1].imageUrl" class="img-fluid img-thumbnail"> 
-                    <span class="imagebox-desc"></span>
+               
+                  <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 m-b-20" *ngIf="i==0">
+                    <a href="company-form">
+                      <img src="/assets/images/new_image.jpg" class="img-fluid">
+                      <span class="imagebox-desc">Insert New Image</span></a>
+                  </div>
+                  <!-- <div class="row-1" *ngFor="let item of imageList"> -->
+                  <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 m-b-20" *ngIf="i!=0">
+                      <div class="card project_widget">
+                          <div class="header">
+                            <ul class="header-dropdown">
+                              <li class="edit">
+                                <a role="button" (click)="editImage(imageList[3*i-1].id)" class="boxs-edit"><i class="zmdi zmdi-edit"></i></a>
+                              </li>
+                              <li class="remove">
+                                <a role="button" (click)="deleteImage(imageList[3*i-1].id, imageList[3*i-1].imageUrl)" class="boxs-close"><i
+                                    class="zmdi zmdi-delete"></i></a>
+                              </li>
+                            </ul>
+                          </div>
+                          <img [src]="imageList[3*i-1].imageUrl" class="img-fluid img-thumbnail">
+                          <span class="imagebox-desc">
+                            <h2>{{imageList[3*i-1].company_name | uppercase }}</h2>
+                          </span>
+                        </div>
+                    <!-- <img [src]="imageList[3*i-1].imageUrl" class="img-fluid img-thumbnail">
+                    <span class="imagebox-desc"></span> -->
                   </div>
 
-                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 m-b-20" *ngIf="imageList[3*i]"><img
-                    [src]="imageList[3*i].imageUrl" class="img-fluid img-thumbnail"> 
-                    <span class="imagebox-desc"><h2>{{imageList[3*i].company_name | uppercase }}</h2></span>
+                  <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 m-b-20" *ngIf="imageList[3*i]">
+                    <div class="card project_widget">
+                      <div class="header">
+                        <ul class="header-dropdown">
+                          <li class="edit">
+                            <a role="button" (click)="editImage(imageList[3*i].id)" class="boxs-edit"><i class="zmdi zmdi-edit"></i></a>
+                          </li>
+                          <li class="remove">
+                            <a role="button" (click)="deleteImage(imageList[3*i].id, imageList[3*i].imageUrl)" class="boxs-close"><i
+                                class="zmdi zmdi-delete"></i></a>
+                          </li>
+                        </ul>
+                      </div>
+                      <img [src]="imageList[3*i].imageUrl" class="img-fluid img-thumbnail">
+                      <span class="imagebox-desc">
+                        <h2>{{imageList[3*i].company_name | uppercase }}</h2>
+                      </span>
+                    </div>
                   </div>
-                  <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 m-b-20" *ngIf="imageList[3*i+1]"><img
-                    [src]="imageList[3*i+1].imageUrl" class="img-fluid img-thumbnail"> 
-                    <span class="imagebox-desc"><h2>{{imageList[3*i+1].company_name | uppercase }}</h2></span>
+                  <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 m-b-20" *ngIf="imageList[3*i+1]">
+                    <div class="card project_widget">
+                      <div class="header">
+                        <ul class="header-dropdown">
+                          <li class="edit">
+                            <a role="button" (click)="editImage(imageList[3*i+1].id)" class="boxs-edit"><i class="zmdi zmdi-edit"></i></a>
+                          </li>
+                          <li class="remove">
+                            <a role="button" (click)="deleteImage(imageList[3*i+1].id, imageList[3*i+1].imageUrl)" class="boxs-close"><i
+                                class="zmdi zmdi-delete"></i></a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <img [src]="imageList[3*i+1].imageUrl" class="img-fluid img-thumbnail">
+                    <span class="imagebox-desc">
+                      <h2>{{imageList[3*i+1].company_name | uppercase }}</h2>
+                    </span>
                   </div>
+                <!-- </div> -->
+                </div>
               </div>
             </div>
           </div>
+          </div>
         </div>
-
-
-
-      </div>
-    </div>
   </section>
   <!-- footer -->
   <app-foter></app-foter>
