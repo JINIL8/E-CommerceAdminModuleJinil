@@ -13,38 +13,46 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CompanyFormComponent implements OnInit {
 
+  form: FormGroup;
+  formType = 'Add';
+  formButon = 'Save';
+  data = [];
+
   imgSrc: string;
   selectedImage: any = null;
   isSubmitted: boolean;
   images: Image[];
-  formType = 'Add';
-  formButon = 'Save';
-  companyID = '';
+
 
   product: any = {
     imageUrl: '',
     company_name: '',
     description: '',
   };
-  formTemplate = new FormGroup({
-    imageUrl: new FormControl('', Validators.required),
-    company_name: new FormControl('', Validators.required),
-    description: new FormControl('', Validators.required),
-    id: new FormControl('')
-  });
+
+  /*  formTemplate = new FormGroup({
+     imageUrl: new FormControl('', Validators.required),
+     company_name: new FormControl('', Validators.required),
+     description: new FormControl('', Validators.required),
+   }); */
   constructor(private formBuilder: FormBuilder, private storage: AngularFireStorage, private service: AlbumstorageService,
-    private albumService: AlbumsService, private route: ActivatedRoute) { }
+    private albumService: AlbumsService, private route: ActivatedRoute) {
+    /* this.form = this.formBuilder.group({
+      imageUrl: '',
+      company_name: '',
+      description: '',
+    }); */
+  }
 
   ngOnInit() {
     this.resetForm();
-    const id = this.route.snapshot.params['id'];
+    const id = this.route.snapshot.params[`id`];
     if (id && id !== '') {
       this.albumService.getImageById(id).subscribe(res => {
-        this.companyID = id;
         this.product = res;
         this.formType = 'Edit';
         this.formButon = 'Update';
-        this.formTemplate.controls.id.patchValue(this.companyID);
+        this.form.controls.id.patchValue(id);
       });
     }
   }
@@ -61,11 +69,11 @@ export class CompanyFormComponent implements OnInit {
     }
   }
   onSubmit(formValue) {
-    const data = Object.assign({}, this.formTemplate.value);
+    const data = Object.assign({}, this.form.value);
     delete data.id;
 
     this.isSubmitted = true;
-    if (this.formTemplate.valid) {
+    if (this.form.valid) {
       const filePath = `Company/${this.selectedImage.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
       console.log(filePath);
       const fileRef = this.storage.ref(filePath);
@@ -80,8 +88,19 @@ export class CompanyFormComponent implements OnInit {
         })
       ).subscribe();
     } else {
-      this.albumService.updateImage(this.companyID, data);
-
+      const filePath = `Company/${this.selectedImage.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
+      console.log(filePath);
+      const fileRef = this.storage.ref(filePath);
+      this.storage.upload(filePath, this.selectedImage).snapshotChanges().pipe(
+        finalize(() => {
+          fileRef.getDownloadURL().subscribe((url) => {
+            console.log(url);
+            formValue[`imageUrl`] = url;
+            this.albumService.updateImage(this.form.value.id, data);
+            this.resetForm();
+          });
+        })
+      ).subscribe();
     }
     setTimeout(function () {
       window.location.href = 'album-list';
@@ -89,17 +108,18 @@ export class CompanyFormComponent implements OnInit {
   }
 
   get formControls() {
-    return this.formTemplate[`controls`];
+    return this.form[`controls`];
   }
 
   resetForm() {
-    this.formTemplate.reset();
-    this.formTemplate.setValue({
-      imageUrl: '',
-      company_name: '',
-      description: '',
-      id: ''
+    /*  this.form.reset(); */
+    this.form = this.formBuilder.group({
+      imageUrl: ['', Validators.required],
+      company_name: ['', Validators.required],
+      description: ['']
     });
+
+
     this.imgSrc = '/assets/img/image_placeholder.jpg';
     this.selectedImage = null;
     this.isSubmitted = false;

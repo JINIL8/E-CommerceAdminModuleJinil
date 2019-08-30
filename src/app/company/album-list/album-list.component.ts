@@ -18,7 +18,6 @@ export class AlbumListComponent implements OnInit {
 
   ngOnInit() {
     this.loadImageData();
-    console.log(this.images);
   }
   deleteImage(id: string, downloadUrl: string) {
     this.albumService.deleteImage(id);
@@ -27,13 +26,12 @@ export class AlbumListComponent implements OnInit {
   loadImageData() {
     this.albumService.getImagesList().subscribe(res => {
       this.imageList = res;
-      this.rowIndexArray =  Array.from(Array(Math.ceil((this.imageList.length + 1) / 3)).keys());
-      console.log(this.imageList);
+      this.rowIndexArray = Array.from(Array(Math.ceil((this.imageList.length + 1) / 3)).keys());
+      console.log(res);
     });
   }
   editImage(id: string) {
-   console.log(id);
-    /*  window.location.href = 'edit-company-form/' + id; */
+    window.location.href = 'editform/' + id;
   }
 
 }

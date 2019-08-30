@@ -25,12 +25,12 @@
 
               <div id=" " *ngFor="let i of rowIndexArray" class="list-unstyled row clearfix">
                
-                  <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 m-b-20" *ngIf="i==0">
+                   <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 m-b-20" *ngIf="i==0">
                     <a href="company-form">
                       <img src="/assets/images/new_image.jpg" class="img-fluid">
                       <span class="imagebox-desc">Insert New Image</span></a>
                   </div>
-                  <!-- <div class="row-1" *ngFor="let item of imageList"> -->
+                 <!-- <div class="row-1" *ngFor="let item of imageList"> -->
                   <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 m-b-20" *ngIf="i!=0">
                       <div class="card project_widget">
                           <div class="header">
@@ -49,8 +49,8 @@
                             <h2>{{imageList[3*i-1].company_name | uppercase }}</h2>
                           </span>
                         </div>
-                    <!-- <img [src]="imageList[3*i-1].imageUrl" class="img-fluid img-thumbnail">
-                    <span class="imagebox-desc"></span> -->
+                    <img [src]="imageList[3*i-1].imageUrl" class="img-fluid img-thumbnail">
+                    <span class="imagebox-desc"></span>
                   </div>
 
                   <div class="col-xl-3 col-lg-4 col-md-6 col-sm-12 m-b-20" *ngIf="imageList[3*i]">

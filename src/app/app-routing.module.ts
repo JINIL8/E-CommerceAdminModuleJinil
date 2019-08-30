@@ -13,13 +13,13 @@ const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'dashboard', canActivate: [GaurdService], component: DashboardComponent },
   { path: 'edit-product/:id', canActivate: [GaurdService], component: AddProductComponent },
-  { path: 'login', component: LoginComponent  },
-  { path: 'register' , component: RegisterComponent},
-  { path: 'add-product' , component: AddProductComponent},
-  { path: 'product-list' , component: ProductListComponent},
-  { path: 'company-form' , component: CompanyFormComponent},
-  { path: 'edit-company-form/:id', canActivate: [GaurdService], component: CompanyFormComponent},
-  { path: 'album-list' , component: AlbumListComponent}
+  { path: 'login',  component: LoginComponent  },
+  { path: 'register',  component: RegisterComponent},
+  { path: 'add-product' , canActivate: [GaurdService], component: AddProductComponent},
+  { path: 'product-list' , canActivate: [GaurdService], component: ProductListComponent},
+  { path: 'company-form' , canActivate: [GaurdService], component: CompanyFormComponent},
+  { path: 'editform/:id', canActivate: [GaurdService], component: CompanyFormComponent},
+  { path: 'album-list' , canActivate: [GaurdService], component: AlbumListComponent},
 ];
 
 @NgModule({
@@ -32,4 +32,8 @@ export const RoutingComponents = [
   DashboardComponent,
   CompanyFormComponent,
   LoginComponent,
+  AddProductComponent,
+  ProductListComponent,
+  CompanyFormComponent,
+  AlbumListComponent
 ];

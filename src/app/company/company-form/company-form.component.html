@@ -23,34 +23,31 @@
           </div>
         </div>
       </div>
-      <div class="card" style="width:25rem">
+      <div class="card" style="width:50rem;height: 50rem;">
+        <br>
         <div class="card-body">
-          <form [formGroup]="formTemplate" (submit)="onSubmit(formTemplate.value)">
+          <form [formGroup]="form" action="#" (submit)="onSubmit(form.value)">
 
             <div class="form-group">
               <input type="text" #company_name  [(ngModel)]="product.company_name" class="form-control" formControlName="company_name" placeholder="CompanyName">
-              <div class="text-danger" *ngIf="isSubmitted && formControls.company_name.errors?.required">This field is
-                required.
-              </div>
-            </div>
+              <small *ngIf="form.controls['company_name'].invalid && (form.controls['company_name'].dirty || form.controls['company_name'].touched)" class="form-control-feedback"> CompanyName is Required Field </small> </div>
             <div class="text-center">
               <img [src]="imgSrc" width="350px" height="250px" (click)="fileUploader.click()">
-            </div>
-
+            </div><br>
+            <br>
             <div class="form-group">
               <label>Select file to upload</label>
               <input type="file" accept="image/*" class="form-control" #fileUploader formControlName="imageUrl"
                 (change)="showPreview($event)">
-              <div class="text-danger" *ngIf="isSubmitted && formControls.imageUrl.errors?.required">This field is
+              <div class="text-danger" *ngIf="isSubmitted && form.controls['imageUrl'].invalid">This field is
                 required.
               </div>
             </div>
             <div class="form-group">
               <textarea #description [(ngModel)]="product.description" class="form-control" formControlName="description" placeholder="Description"></textarea>
-              <div class="text-danger" *ngIf="isSubmitted && formControls.description.errors?.required">This field is
-                required.
-              </div>
+              <small *ngIf="form.controls['description'].invalid && (form.controls['description'].dirty || form.controls['description'].touched)" class="form-control-feedback"> Description is Required Field </small>
             </div>
+          
             <!-- <div class="form-group">
                   <select formControlName="category" class="form-control">
                     <option value="Animal">C</option>
@@ -60,10 +57,9 @@
                 </div> -->
             <div class="form-row">
               <div class="form-group col-md-6">
-                <a routerLink="" class="btn btn-primary btn-block float-right">Go To Gallery</a>
               </div>
               <div class="form-group col-md-6">
-                <button type="submit" [disabled]="formTemplate.invalid"  class="btn btn-success btn-block float-right">{{formButon}}</button>
+                <button type="submit" [disabled]="form.invalid"  class="btn btn-success btn-block float-right">{{formButon}}</button>
               </div>
             </div>
           </form>

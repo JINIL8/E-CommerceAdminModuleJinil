@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+
 export interface Image {
   imageUrl: string;
   company_name: string;
@@ -12,15 +13,15 @@ export interface Image {
 })
 export class AlbumsService {
 
-  private ImagesCollection: AngularFirestoreCollection<Image>;
-  private Images: Observable<Image[]>;
+  private imagesCollection: AngularFirestoreCollection<Image>;
+  private images: Observable<Image[]>;
 
 
   constructor(private db: AngularFirestore) {
 
-    this.ImagesCollection = db.collection<Image>('TBL_COMPANY');
+    this.imagesCollection = db.collection<Image>('TBL_COMPANY');
 
-    this.Images = this.ImagesCollection.snapshotChanges().pipe(
+    this.images = this.imagesCollection.snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {
           const data = a.payload.doc.data();
@@ -30,20 +31,20 @@ export class AlbumsService {
       })
     );
   }
-  updateImage(id: string, company: Image) {
-    this.ImagesCollection.doc(id).update(company);
+  updateImage(id: string, image: Image) {
+    this.imagesCollection.doc(id).update(image);
   }
   getImageById(id) {
-    return this.ImagesCollection.doc<Image>(id).valueChanges();
+    return this.imagesCollection.doc<Image>(id).valueChanges();
   }
   getImagesList() {
-    return this.Images;
+       return this.images;
   }
   addImage(image: Image) {
-    return this.ImagesCollection.add(image);
+    return this.imagesCollection.add(image);
   }
   deleteImage(id: string) {
-    return this.ImagesCollection.doc(id).delete();
+    return this.imagesCollection.doc(id).delete();
   }
 
 }
